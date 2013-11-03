@@ -1,0 +1,9 @@
+name: Leaper
+main: com.sgtcaze.Leaper.Leaper
+version: 4.0
+author: sgtcaze
+website: http://sgtcaze.com
+commands:
+    leaper:
+        description: Reload command for Leaper
+        usage: /leaper reload - reload configuration
