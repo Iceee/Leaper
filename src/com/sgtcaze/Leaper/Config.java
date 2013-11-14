@@ -3,7 +3,7 @@ package com.sgtcaze.Leaper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -20,10 +20,12 @@ public class Config {
 
 	public boolean SmootherWalk = true;
 
-	public List<String> enabledWorlds = new ArrayList<String>();
-
-	public List<String> disabledRegions = new ArrayList<String>();
-
+	public boolean disableFallDamage = false;
+	
+	public HashSet<String> enabledWorlds = new HashSet<String>();
+	
+	public HashSet<String> disabledRegions = new HashSet<String>();
+	
 	public boolean pSmoke = false;
 	public boolean pMobSpawnerFlames = false;
 	public boolean pEnderSignal = false;
@@ -41,36 +43,24 @@ public class Config {
 
 		height = config.getDouble("height", height);
 		multiply = config.getDouble("multiply", multiply);
-
+		
+		disableFallDamage = config.getBoolean("disableAllFallDamage",disableFallDamage);
+		
 		SmootherWalk = config.getBoolean("SmootherWalk", SmootherWalk);
 
-		enabledWorlds = config.getStringList("Worlds.EnabledWorlds");
+		enabledWorlds = new HashSet<String>(config.getStringList("Worlds.EnabledWorlds"));
 		if (enabledWorlds.isEmpty()) {
 			enabledWorlds.add(Bukkit.getWorlds().get(0).getName());
 		}
+		disabledRegions = new HashSet<String>(config.getStringList("WorldGuard.DisabledRegions"));
 
 		pSmoke = config.getBoolean("Particles.Smoke", pSmoke);
-		pMobSpawnerFlames = config.getBoolean("Particles.MobSpawnerFlames",
-				pMobSpawnerFlames);
+		pMobSpawnerFlames = config.getBoolean("Particles.MobSpawnerFlames", pMobSpawnerFlames);
 		pEnderSignal = config.getBoolean("Particles.EnderSignal", pEnderSignal);
 		pPotionBreak = config.getBoolean("Particles.PotionBreak", pPotionBreak);
 
 		sBatTakeOff = config.getBoolean("Sounds.BatTakeOff", sBatTakeOff);
-		sEnderDragonWings = config.getBoolean("Sounds.EnderDragonWings",
-				sEnderDragonWings);
-		sShootArrow = config.getBoolean("Sounds.ShootArrow", sShootArrow);
-
-		disabledRegions = config.getStringList("WorldGuard.DisabledRegions");
-
-		pSmoke = config.getBoolean("Particles.Smoke", pSmoke);
-		pMobSpawnerFlames = config.getBoolean("Particles.MobSpawnerFlames",
-				pMobSpawnerFlames);
-		pEnderSignal = config.getBoolean("Particles.EnderSignal", pEnderSignal);
-		pPotionBreak = config.getBoolean("Particles.PotionBreak", pPotionBreak);
-
-		sBatTakeOff = config.getBoolean("Sounds.BatTakeOff", sBatTakeOff);
-		sEnderDragonWings = config.getBoolean("Sounds.EnderDragonWings",
-				sEnderDragonWings);
+		sEnderDragonWings = config.getBoolean("Sounds.EnderDragonWings", sEnderDragonWings);
 		sShootArrow = config.getBoolean("Sounds.ShootArrow", sShootArrow);
 
 		saveConfig();
@@ -83,30 +73,11 @@ public class Config {
 		config.set("multiply", multiply);
 
 		config.set("SmootherWalk", SmootherWalk);
+		
+		config.set("disableAllFallDamage",disableFallDamage);
 
-		config.set("Worlds.EnabledWorlds", enabledWorlds);
-
-		config.set("Particles.Smoke", pSmoke);
-		config.set("Particles.MobSpawnerFlames", pMobSpawnerFlames);
-		config.set("Particles.EnderSignal", pEnderSignal);
-		config.set("Particles.PotionBreak", pPotionBreak);
-
-		config.set("Sounds.BatTakeOff", sBatTakeOff);
-		config.set("Sounds.EnderDragonWings", sEnderDragonWings);
-		config.set("Sounds.ShootArrow", sShootArrow);
-
-		try {
-			config.save(configpath);
-		} catch (IOException e) {
-		}
-
-		config.set("height", height);
-		config.set("multiply", multiply);
-
-		config.set("SmootherWalk", SmootherWalk);
-
-		config.set("Worlds.EnabledWorlds", enabledWorlds);
-		config.set("WorldGuard.DisabledRegions", disabledRegions);
+		config.set("Worlds.EnabledWorlds", new ArrayList<String>(enabledWorlds));
+		config.set("WorldGuard.DisabledRegions", new ArrayList<String>(disabledRegions));
 
 		config.set("Particles.Smoke", pSmoke);
 		config.set("Particles.MobSpawnerFlames", pMobSpawnerFlames);
@@ -117,10 +88,7 @@ public class Config {
 		config.set("Sounds.EnderDragonWings", sEnderDragonWings);
 		config.set("Sounds.ShootArrow", sShootArrow);
 
-		try {
-			config.save(configpath);
-		} catch (IOException e) {
-		}
+		try {config.save(configpath);} catch (IOException e) {}
 	}
 
 }
