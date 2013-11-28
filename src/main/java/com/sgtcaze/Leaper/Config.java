@@ -20,12 +20,14 @@ public class Config {
 
 	public boolean SmootherWalk = true;
 
+	public boolean WGEnabled = false;
+
 	public boolean disableFallDamage = false;
-	
+
 	public HashSet<String> enabledWorlds = new HashSet<String>();
-	
+
 	public HashSet<String> disabledRegions = new HashSet<String>();
-	
+
 	public boolean pSmoke = false;
 	public boolean pMobSpawnerFlames = false;
 	public boolean pEnderSignal = false;
@@ -43,24 +45,31 @@ public class Config {
 
 		height = config.getDouble("height", height);
 		multiply = config.getDouble("multiply", multiply);
-		
-		disableFallDamage = config.getBoolean("disableAllFallDamage",disableFallDamage);
-		
+
+		disableFallDamage = config.getBoolean("disableAllFallDamage",
+				disableFallDamage);
+
 		SmootherWalk = config.getBoolean("SmootherWalk", SmootherWalk);
 
-		enabledWorlds = new HashSet<String>(config.getStringList("Worlds.EnabledWorlds"));
+		WGEnabled = config.getBoolean("WGEnabled", WGEnabled);
+
+		enabledWorlds = new HashSet<String>(
+				config.getStringList("Worlds.EnabledWorlds"));
 		if (enabledWorlds.isEmpty()) {
 			enabledWorlds.add(Bukkit.getWorlds().get(0).getName());
 		}
-		disabledRegions = new HashSet<String>(config.getStringList("WorldGuard.DisabledRegions"));
+		disabledRegions = new HashSet<String>(
+				config.getStringList("WorldGuard.DisabledRegions"));
 
 		pSmoke = config.getBoolean("Particles.Smoke", pSmoke);
-		pMobSpawnerFlames = config.getBoolean("Particles.MobSpawnerFlames", pMobSpawnerFlames);
+		pMobSpawnerFlames = config.getBoolean("Particles.MobSpawnerFlames",
+				pMobSpawnerFlames);
 		pEnderSignal = config.getBoolean("Particles.EnderSignal", pEnderSignal);
 		pPotionBreak = config.getBoolean("Particles.PotionBreak", pPotionBreak);
 
 		sBatTakeOff = config.getBoolean("Sounds.BatTakeOff", sBatTakeOff);
-		sEnderDragonWings = config.getBoolean("Sounds.EnderDragonWings", sEnderDragonWings);
+		sEnderDragonWings = config.getBoolean("Sounds.EnderDragonWings",
+				sEnderDragonWings);
 		sShootArrow = config.getBoolean("Sounds.ShootArrow", sShootArrow);
 
 		saveConfig();
@@ -73,11 +82,14 @@ public class Config {
 		config.set("multiply", multiply);
 
 		config.set("SmootherWalk", SmootherWalk);
-		
-		config.set("disableAllFallDamage",disableFallDamage);
+
+		config.set("WGEnabled", WGEnabled);
+
+		config.set("disableAllFallDamage", disableFallDamage);
 
 		config.set("Worlds.EnabledWorlds", new ArrayList<String>(enabledWorlds));
-		config.set("WorldGuard.DisabledRegions", new ArrayList<String>(disabledRegions));
+		config.set("WorldGuard.DisabledRegions", new ArrayList<String>(
+				disabledRegions));
 
 		config.set("Particles.Smoke", pSmoke);
 		config.set("Particles.MobSpawnerFlames", pMobSpawnerFlames);
@@ -88,7 +100,10 @@ public class Config {
 		config.set("Sounds.EnderDragonWings", sEnderDragonWings);
 		config.set("Sounds.ShootArrow", sShootArrow);
 
-		try {config.save(configpath);} catch (IOException e) {}
+		try {
+			config.save(configpath);
+		} catch (IOException e) {
+		}
 	}
 
 }

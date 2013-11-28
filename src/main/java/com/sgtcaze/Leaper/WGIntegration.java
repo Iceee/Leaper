@@ -10,20 +10,24 @@ import com.sk89q.worldguard.bukkit.WGBukkit;
 public class WGIntegration {
 
 	private Config config;
+
 	public WGIntegration(Config config) {
 		this.config = config;
 	}
-	
-	public boolean isAllowedInRegion(Location location) { 
+
+	public boolean isAllowedInRegion(Location location) {
 		try {
-			List<String> aregions = WGBukkit.getRegionManager(location.getWorld()).getApplicableRegionsIDs(BukkitUtil.toVector(location));
+			List<String> aregions = WGBukkit.getRegionManager(
+					location.getWorld()).getApplicableRegionsIDs(
+					BukkitUtil.toVector(location));
 			for (String disabledregion : config.disabledRegions) {
 				if (aregions.contains(disabledregion)) {
 					return false;
 				}
 			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 		return true;
 	}
-	
+
 }

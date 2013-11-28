@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId> com.sgtcaze</groupId>
     <artifactId>Leaper</artifactId>
-    <version>0.1</version>
+    <version>4.0</version>
     <name>Leaper</name>
     <url>https://github.com/sgtcaze/Leaper</url>
     <issueManagement>
@@ -79,6 +79,13 @@
 		<dependency>
                         <groupId>com.sk89q</groupId>
                         <artifactId>worldguard</artifactId>
+                        <version>LATEST</version>
+                        <scope>compile</scope>
+                        <type>jar</type>
+                </dependency>
+				<dependency>
+                        <groupId>com.sk89q</groupId>
+                        <artifactId>worldedit</artifactId>
                         <version>LATEST</version>
                         <scope>compile</scope>
                         <type>jar</type>
