@@ -16,6 +16,9 @@ public class WGIntegration {
 	}
 
 	public boolean isAllowedInRegion(Location location) {
+		if (Bukkit.getPluginManager().getPlugin("WorldGuard") == null) {
+			return true;
+		}
 		try {
 			List<String> aregions = WGBukkit.getRegionManager(
 					location.getWorld()).getApplicableRegionsIDs(
