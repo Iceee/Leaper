@@ -163,22 +163,14 @@ public class EventListener implements Listener {
 							ongroundtask.get(player.getName()));
 					ongroundtask.remove(player.getName());
 				}
-				if (config.WGEnabled) {
-					if (wghook.isAllowedInRegion(player.getLocation())) {
-						player.setVelocity(player.getLocation().getDirection()
-								.multiply(1.0D * config.multiply)
-								.setY(1.0 * config.height));
-						player.setFallDistance(0);
-						playEffects(player.getLocation());
-					} else {
-						maxdowny.remove(player.getName());
-					}
-				} else {
+				if (wghook.isAllowedInRegion(player.getLocation())) {
 					player.setVelocity(player.getLocation().getDirection()
 							.multiply(1.0D * config.multiply)
 							.setY(1.0 * config.height));
 					player.setFallDistance(0);
 					playEffects(player.getLocation());
+				} else {
+					maxdowny.remove(player.getName());
 				}
 			}
 		}
