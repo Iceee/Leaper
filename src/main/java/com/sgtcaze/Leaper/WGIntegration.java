@@ -20,16 +20,11 @@ public class WGIntegration {
 		if (Bukkit.getPluginManager().getPlugin("WorldGuard") == null) {
 			return true;
 		}
-		try {
-			List<String> aregions = WGBukkit.getRegionManager(
-					location.getWorld()).getApplicableRegionsIDs(
-					BukkitUtil.toVector(location));
-			for (String disabledregion : config.disabledRegions) {
-				if (aregions.contains(disabledregion)) {
-					return false;
-				}
+		List<String> aregions = WGBukkit.getRegionManager(location.getWorld()).getApplicableRegionsIDs(BukkitUtil.toVector(location));
+		for (String region : aregions) {
+			if (config.disabledRegions.contains(region)) {
+				return false;
 			}
-		} catch (Exception e) {
 		}
 		return true;
 	}
