@@ -143,7 +143,7 @@ public class EventListener implements Listener {
 	// when player toggles fly cancel fly and increase player velocity
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onFly(PlayerToggleFlightEvent event) {
-		Player player = event.getPlayer();
+		final Player player = event.getPlayer();
 		String worldname = player.getWorld().getName();
 		if (config.enabledWorlds.contains(worldname)) {
 			if (player.getGameMode() != GameMode.CREATIVE) {
@@ -164,11 +164,15 @@ public class EventListener implements Listener {
 					ongroundtask.remove(player.getName());
 				}
 				if (wghook.isAllowedInRegion(player.getLocation())) {
-					player.setVelocity(player.getLocation().getDirection()
-							.multiply(1.0D * config.multiply)
-							.setY(1.0 * config.height));
-					player.setFallDistance(0);
-					playEffects(player.getLocation());
+					Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+						public void run() {
+							//do double jump
+							player.setVelocity(player.getLocation().getDirection()
+									.multiply(1.0D * config.multiply).setY(1.0 * config.height));
+							player.setFallDistance(0);
+							playEffects(player.getLocation());
+						}
+					});
 				} else {
 					maxdowny.remove(player.getName());
 				}
