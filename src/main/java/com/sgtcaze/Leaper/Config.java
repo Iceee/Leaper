@@ -20,8 +20,6 @@ public class Config {
 
 	public boolean SmootherWalk = true;
 
-	public boolean WGEnabled = false;
-
 	public boolean disableFallDamage = false;
 
 	public HashSet<String> enabledWorlds = new HashSet<String>();
@@ -50,8 +48,6 @@ public class Config {
 				disableFallDamage);
 
 		SmootherWalk = config.getBoolean("SmootherWalk", SmootherWalk);
-
-		WGEnabled = config.getBoolean("WGEnabled", WGEnabled);
 
 		enabledWorlds = new HashSet<String>(
 				config.getStringList("Worlds.EnabledWorlds"));
@@ -82,8 +78,6 @@ public class Config {
 		config.set("multiply", multiply);
 
 		config.set("SmootherWalk", SmootherWalk);
-
-		config.set("WGEnabled", WGEnabled);
 
 		config.set("disableAllFallDamage", disableFallDamage);
 
