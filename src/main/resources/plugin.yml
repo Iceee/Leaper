@@ -1,6 +1,6 @@
 name: Leaper
 main: com.sgtcaze.Leaper.Leaper
-version: 4.0
+version: 4.1
 authors: [sgtcaze, _Shevchik_]
 website: http://sgtcaze.com
 commands:
