@@ -5,4 +5,4 @@ Leaper offers a unique double jump experience in Minecraft. Customize the height
 
 BukkitDev: http://dev.bukkit.org/bukkit-plugins/leaper/
 
-Dev Builds: http://ci.playmc.cc/jobs/Leaper
+Dev Builds: http://ci.playmc.cc/job/Leaper
