@@ -45,19 +45,14 @@
             <artifactId>bukkit</artifactId>
             <version>LATEST</version>
         </dependency>
-		<dependency>
-            <groupId>lilypad.client.connect</groupId>
-            <artifactId>api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-		<dependency>
+	<dependency>
             <groupId>com.sk89q</groupId>
             <artifactId>worldguard</artifactId>
             <version>LATEST</version>
             <scope>compile</scope>
             <type>jar</type>
         </dependency>
-		<dependency>
+	<dependency>
             <groupId>com.sk89q</groupId>
             <artifactId>worldedit</artifactId>
             <version>LATEST</version>
